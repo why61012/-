@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 图书馆图书管理系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📚 图书馆管理系统</h1>
+            <p class="subtitle">演示版本 - 内存存储</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="books">图书列表</button>
+            <button class="tab-btn" data-tab="add">添加图书</button>
+            <button class="tab-btn" data-tab="search">搜索图书</button>
+        </nav>
+
+        <!-- 图书列表标签页 -->
+        <section id="books" class="tab-content active">
+            <div class="section-header">
+                <h2>图书列表</h2>
+                <span id="book-count" class="book-count">共 0 本</span>
+            </div>
+            <div id="books-container" class="books-grid">
+                <!-- 动态生成 -->
+            </div>
+        </section>
+
+        <!-- 添加图书标签页 -->
+        <section id="add" class="tab-content">
+            <h2>添加新图书</h2>
+            <form id="add-form" class="form">
+                <div class="form-group">
+                    <label for="title">图书名称 *</label>
+                    <input type="text" id="title" placeholder="例如：The Great Gatsby" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">作者 *</label>
+                    <input type="text" id="author" placeholder="例如：F. Scott Fitzgerald" required>
+                </div>
+                <div class="form-group">
+                    <label for="isbn">ISBN *</label>
+                    <input type="text" id="isbn" placeholder="例如：978-0-7432-7356-5" required>
+                </div>
+                <button type="submit" class="btn btn-primary">➕ 添加图书</button>
+            </form>
+        </section>
+
+        <!-- 搜索标签页 -->
+        <section id="search" class="tab-content">
+            <h2>搜索图书</h2>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="输入图书名称或作者..." class="search-input">
+                <button id="search-btn" class="btn btn-primary">🔍 搜索</button>
+            </div>
+            <div id="search-results" class="books-grid">
+                <!-- 动态生成 -->
+            </div>
+        </section>
+    </div>
+
+    <!-- 编辑弹窗 -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>编辑图书</h2>
+            <form id="edit-form" class="form">
+                <input type="hidden" id="edit-id">
+                <div class="form-group">
+                    <label for="edit-title">图书名称</label>
+                    <input type="text" id="edit-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-author">作者</label>
+                    <input type="text" id="edit-author" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-isbn">ISBN</label>
+                    <input type="text" id="edit-isbn" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">💾 保存</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 成功提示 -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
